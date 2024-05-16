@@ -1,0 +1,38 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+
+service PostService {
+  rpc GetAllPosts (Empty) returns (PostList);
+  rpc GetPostById (PostId) returns (Post);
+  rpc CreatePost (PostInput) returns (Post);
+  rpc UpdatePost (PostUpdate) returns (Post);
+  rpc DeletePost (PostId) returns (Empty);
+}
+
+message PostId {
+  int32 id = 1;
+}
+
+message PostInput {
+  int32 userId = 1;
+  string title = 2;
+  string body = 3;
+}
+
+message PostUpdate {
+  int32 id = 1;
+  int32 userId = 2;
+  string title = 3;
+  string body = 4;
+}
+
+message Post {
+  int32 id = 1;
+  int32 userId = 2;
+  string title = 3;
+  string body = 4;
+}
+
+message PostList {
+  repeated Post posts = 1;
+}

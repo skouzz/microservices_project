@@ -1,0 +1,37 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+
+service UserService {
+  rpc GetAllUsers (Empty) returns (UserList);
+  rpc GetUserById (UserId) returns (User);
+  rpc CreateUser (UserInput) returns (User);
+  rpc UpdateUser (UserUpdate) returns (User);
+  rpc DeleteUser (UserId) returns (Empty);
+}
+
+message Empty {}
+
+message UserId {
+  int32 id = 1;
+}
+
+message UserInput {
+  string name = 1;
+  string email = 2;
+}
+
+message UserUpdate {
+  int32 id = 1;
+  string name = 2;
+  string email = 3;
+}
+
+message User {
+  int32 id = 1;
+  string name = 2;
+  string email = 3;
+}
+
+message UserList {
+  repeated User users = 1;
+}

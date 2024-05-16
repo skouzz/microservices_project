@@ -1,0 +1,36 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+
+
+service CommentService {
+  rpc GetAllComments (Empty) returns (CommentList);
+  rpc GetCommentById (CommentId) returns (Comment);
+  rpc CreateComment (CommentInput) returns (Comment);
+  rpc UpdateComment (CommentUpdate) returns (Comment);
+  rpc DeleteComment (CommentId) returns (Empty);
+}
+
+message CommentId {
+  int32 id = 1;
+}
+
+message CommentInput {
+  int32 postId = 1;
+  string text = 2;
+}
+
+message CommentUpdate {
+  int32 id = 1;
+  int32 postId = 2;
+  string text = 3;
+}
+
+message Comment {
+  int32 id = 1;
+  int32 postId = 2;
+  string text = 3;
+}
+
+message CommentList {
+  repeated Comment comments = 1;
+}
